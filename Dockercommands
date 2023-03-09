@@ -1,0 +1,37 @@
+Session-2 Agenda
+----------------
+Create Security Group
+Launch EC2
+Connect through Putty and Super putty
+Install Docker in EC2
+Docker commands
+
+Container is the running instance of docker image
+Container - mini server
+
+docker images --> will show the images available in the server
+docker pull <name>:<version> --> will pull the image from docker hub
+docker create <image-id> - create container out of image
+docker ps - will show running containers
+docker ps -a --> will show all containers
+docker start <container-id> - will start the container
+docker stop <container-id> -> it will stop the container
+docker rm <container-id> -> delete the container
+docker rmi <image-id> - will remove images
+
+
+docker run = docker pull + create + start
+docker run by default runs the container in foreground attaches to the screen
+docker run -d
+docker run -d -p 80:80 nginx
+docker run -d -p <any-host-port>:80 nginx
+netstat -lntp --> all used
+
+i want to login to the nginx container and see what is there inside
+
+docker exec -it <ID> bash
+CTRL + D to come out
+
+
+
+assign one port on host that should map the container
