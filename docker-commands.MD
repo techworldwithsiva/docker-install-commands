@@ -56,5 +56,5 @@ docker run -d --name [name-you-wish] [image-name]:[version]
 ```
 * To login the container shell. To come out use CTRL+d
 ```
-docker exc -it [container-id] bash
+docker exec -it [container-id] bash
 ```
