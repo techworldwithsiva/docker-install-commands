@@ -5,6 +5,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+LOG=docker-install.log
 USER_ID=$(id -u)
 if [ $USER_ID -ne 0 ]; then
 	echo  -e "$R You are not the root user, you dont have permissions to run this $N"
@@ -21,20 +22,23 @@ VALIDATE(){
 
 }
 
-yum update  -y
+yum update  -y &>>$LOG
 VALIDATE $? "Updating packages"
 
-amazon-linux-extras install docker -y
+amazon-linux-extras install docker -y &>>$LOG
 VALIDATE $? "Installing Docker"
 
-service docker start
+service docker start &>>$LOG
 VALIDATE $? "Starting Docker"
 
-systemctl enable docker
+systemctl enable docker &>>$LOG
 VALIDATE $? "Enabling Docker"
 
-usermod -a -G docker ec2-user
+usermod -a -G docker ec2-user &>>$LOG
 VALIDATE $? "Added ec2-user to docker group"
+
+yum install git -y &>>$LOG
+VALIDATE $? "Installing GIT"
 
 echo  -e "$R You need logout and login to the server $N"
 
